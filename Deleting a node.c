@@ -1,84 +1,89 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-typedef struct Node{
+typedef struct Node
+{
     int data;
-    struct Node*prev;
-    struct Node*next;
-}node;
+    struct Node *prev;
+    struct Node *next;
+} node;
 
-void display(node*p){
-while(p!=NULL){
-    printf("data = %d\n",p->data);
-    p=p->next;
+void display(node *p)
+{
+    while (p != NULL)
+    {
+        printf("data = %d\n", p->data);
+        p = p->next;
+    }
 }
-}
-node*DeletingAnodeWithValue(node*head,int value){
-    node*ptr1=head;
-    node*ptr2=head->next;
+node *DeletingAnodeWithValue(node *head, int value)
+{
+    node *ptr1 = head;
+    node *ptr2 = head->next;
 
-    if(head==NULL){
+    if (head == NULL)
+    {
         printf("List is empty.\n");
-        
     }
-    if(head->data==value){
-        if(head->next!=NULL){
-            head->next->prev=NULL;
-            head=head->next;
+    if (head->data == value)
+    {
+        if (head->next != NULL)
+        {
+            head->next->prev = NULL;
+            head = head->next;
             free(ptr1);
-          
         }
-        while(ptr2->data!=value && ptr2!=NULL){
-            ptr1=ptr1->next;
-            ptr2=ptr2->next;
+        while (ptr2->data != value && ptr2 != NULL)
+        {
+            ptr1 = ptr1->next;
+            ptr2 = ptr2->next;
         }
-        if(ptr2->data==value && ptr2->next!=NULL){
-            ptr1->next=ptr2->next;
-            ptr2->next->prev=ptr1;
+        if (ptr2->data == value && ptr2->next != NULL)
+        {
+            ptr1->next = ptr2->next;
+            ptr2->next->prev = ptr1;
             free(ptr2);
-
         }
     }
-return head;
+    return head;
 }
-int main(){
+int main()
+{
 
-    node*head;
-    node*second;
-    node*third;
-    node*fourth;
+    node *head;
+    node *second;
+    node *third;
+    node *fourth;
 
-    //memory allocation dynamically
-    head=(node*)malloc(sizeof(node));
-    second=(node*)malloc(sizeof(node));
-    third=(node*)malloc(sizeof(node));
-    fourth=(node*)malloc(sizeof(node));
+    // memory allocation dynamically
+    head = (node *)malloc(sizeof(node));
+    second = (node *)malloc(sizeof(node));
+    third = (node *)malloc(sizeof(node));
+    fourth = (node *)malloc(sizeof(node));
 
+    // create links
+    head->data = 4;
+    head->next = second;
+    head->prev = NULL;
 
-    //create links
-    head->data=4;
-    head->next=second;
-    head->prev=NULL;
+    second->data = 5;
+    second->next = third;
+    second->prev = head;
 
-    second->data=5;
-    second->next=third;
-    second->prev=head;
+    third->data = 7;
+    third->next = fourth;
+    third->prev = second;
 
-    third->data=7;
-    third->next=fourth;
-    third->prev=second;
+    fourth->data = 10;
+    fourth->next = NULL;
+    fourth->prev = third;
 
-    fourth->data=10;
-    fourth->next=NULL;
-    fourth->prev=third;
+    printf("before insertion:\n");
+    display(head);
+    printf("\n");
+    printf("After insertion:\n");
+    head = DeletingAnodeWithValue(head, 4);
+    display(head);
 
-   printf("before insertion:\n");
-display(head);
-printf("\n");
-printf("After insertion:\n");
-head=DeletingAnodeWithValue(head,4);
-display(head);
-
-
-return 0;
+    return 0;
 }

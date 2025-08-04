@@ -1,63 +1,75 @@
-#include<stdio.h>
+#include <stdio.h>
 #define N 4
 int queue[N];
-int front=-1;
-int rear=-1;
+int front = -1;
+int rear = -1;
 
-void Enqueue(int data){
-   
-     if(front==-1 && rear==-1){
-        front=rear=0;
-        queue[rear]=data;
-    } 
-    else if((rear+1)%N==front){
+void Enqueue(int data)
+{
+
+    if (front == -1 && rear == -1)
+    {
+        front = rear = 0;
+        queue[rear] = data;
+    }
+    else if ((rear + 1) % N == front)
+    {
         printf("Overflow\n");
     }
-    else{
-        rear=(rear+1)%N;
-        queue[rear]=data;
+    else
+    {
+        rear = (rear + 1) % N;
+        queue[rear] = data;
     }
 }
 
-void Dequeue(){
-    if(front==-1 && rear==-1){
+void Dequeue()
+{
+    if (front == -1 && rear == -1)
+    {
         printf("Underflow\n");
- }
- else if(front==rear){
-    front=rear=-1;
- }
- else{
-    printf("Dequeued element : %d\n",queue[front]);
-    front=(front+1)%N;
- }
     }
+    else if (front == rear)
+    {
+        front = rear = -1;
+    }
+    else
+    {
+        printf("Dequeued element : %d\n", queue[front]);
+        front = (front + 1) % N;
+    }
+}
 
-    void peek(){
-         if(front==-1 && rear==-1){
+void peek()
+{
+    if (front == -1 && rear == -1)
+    {
         printf("Queue is empty.\n");
-        return ;
- }
- printf("peek data is : %d\n",queue[front]);
-
+        return;
     }
+    printf("peek data is : %d\n", queue[front]);
+}
 
-    void display(){
-        int i=front;
-       if(front==-1 && rear==-1){
+void display()
+{
+    int i = front;
+    if (front == -1 && rear == -1)
+    {
         printf("Queue is empty.\n");
- }
- else{
-    while(i!=rear){
-        printf("%d\t",queue[i]);
-        i=(i+1)%N;
     }
- }
- printf(" %d\n",queue[rear]);
+    else
+    {
+        while (i != rear)
+        {
+            printf("%d\t", queue[i]);
+            i = (i + 1) % N;
+        }
     }
-  // printf("Element in circular array : %d\n",queue[rear]);
-    
+    printf(" %d\n", queue[rear]);
+}
+// printf("Element in circular array : %d\n",queue[rear]);
 
-    int main()
+int main()
 {
     int data;
     int ch;
@@ -85,16 +97,13 @@ void Dequeue(){
             peek();
             break;
 
-            case 4:
+        case 4:
             display();
             break;
 
-            default : printf("Invalid choice\n");
-
+        default:
+            printf("Invalid choice\n");
         }
-    }
-    while (ch!=0);
+    } while (ch != 0);
     return 0;
 }
-    
-

@@ -1,44 +1,45 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-struct Node{
+struct Node
+{
     int data;
-    struct Node * next;
-    
+    struct Node *next;
 };
-void linkedlisttraversal(struct Node *ptr){
-    while(ptr!=NULL){
-        printf("Element:%d\n",ptr->data);
-        ptr=ptr->next;
+void linkedlisttraversal(struct Node *ptr)
+{
+    while (ptr != NULL)
+    {
+        printf("Element:%d\n", ptr->data);
+        ptr = ptr->next;
     }
-
 }
-int main(){
-    //Declarationn
+int main()
+{
+    // Declarationn
 
     struct Node *head;
     struct Node *second;
     struct Node *third;
 
-    //Allocate memory
-   
-    head=(struct Node*)malloc(sizeof(struct Node));
-     head=(struct Node*)malloc(sizeof(struct Node));
-      head=(struct Node*)malloc(sizeof(struct Node));
-    
-    //Assign data to nodes
+    // Allocate memory
 
-    head->data=2;
-    head->next=second;
+    head = (struct Node *)malloc(sizeof(struct Node));
+    head = (struct Node *)malloc(sizeof(struct Node));
+    head = (struct Node *)malloc(sizeof(struct Node));
 
-    second->data=4;
-    second->next=third;
+    // Assign data to nodes
 
-    third->data=6;
-    third->next=NULL;
+    head->data = 2;
+    head->next = second;
+
+    second->data = 4;
+    second->next = third;
+
+    third->data = 6;
+    third->next = NULL;
 
     linkedlisttraversal(head);
-    
-    return 0;
 
+    return 0;
 }
